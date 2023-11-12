@@ -46,7 +46,7 @@ export class  FaceSnapService {
     }
   }
 
-  private getFaceSnapById(id:number): FaceSnap{
+  public getFaceSnapById(id:number): FaceSnap{
     let faceSnap = this.faceSnaps[id - 1];
     if (faceSnap) {
       return faceSnap;
@@ -54,6 +54,16 @@ export class  FaceSnapService {
       throw new Error("FaceSnap non trouvé");
     };
   }
+
+  addFaceSnap(formValue: { title: string, description: string, imageUrl: string, location?: string }) {
+    const faceSnap: FaceSnap = {
+        ...formValue,
+        snaps: 0,
+        createdDate: new Date(),
+        id: this.faceSnaps[this.faceSnaps.length - 1].id + 1
+    };
+    this.faceSnaps.push(faceSnap);
+}
 
 }
 

@@ -1,25 +1,26 @@
-
 import { Component, Input, OnInit } from '@angular/core';
-import { FaceSnap } from '../models/face-snap.model';
 import { FaceSnapService } from '../services/face-snap.service';
-import { Router } from '@angular/router';
+import { FaceSnap } from '../models/face-snap.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-face-snap',
-  templateUrl: './face-snap.component.html',
-  styleUrls: ['./face-snap.component.scss']
+  selector: 'app-single-face-snap',
+  templateUrl: './single-face-snap.component.html',
+  styleUrls: ['./single-face-snap.component.scss']
 })
-export class FaceSnapComponent implements OnInit {
-  @Input() faceSnap!: FaceSnap;
-  textSnap!:string;
+export class SingleFaceSnapComponent implements OnInit {
+  textSnap!: string;
+  faceSnap!: FaceSnap;
 
 constructor(
   private faceSnapService: FaceSnapService,
-  private router : Router,
+  private activeRoute : ActivatedRoute,
 ){}
 
   ngOnInit() {
     this.textSnap = "vas y snap !"
+    const id = +this.activeRoute.snapshot.params["id"];
+    this.faceSnap = this.faceSnapService.getFaceSnapById(id);
   }
 
   onSnap(){
@@ -31,9 +32,4 @@ constructor(
       this.faceSnapService.snapFaceSnapById(this.faceSnap.id,"unSnap");
     }
   }
-
-  onViewFaceSnap() {
-    this.router.navigate(["facesnaps/" + this.faceSnap.id]);
-}
-
 }
