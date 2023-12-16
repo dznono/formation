@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -10,6 +10,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SingleFaceSnapComponent } from './single-face-snap/single-face-snap.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewFaceSnapComponent } from './new-face-snap/new-face-snap.component';
+import { HttpClientModule } from '@angular/common/http';
+import { httpInterceptorProviders } from './interceptors';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,12 @@ import { NewFaceSnapComponent } from './new-face-snap/new-face-snap.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
