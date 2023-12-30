@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FaceSnapService } from '../services/face-snap.service';
-import { FaceSnap } from '../models/face-snap.model';
+import { FaceSnapService } from '../../../core/services/face-snap.service';
+import { FaceSnap } from '../../../core/models/face-snap.model';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 
